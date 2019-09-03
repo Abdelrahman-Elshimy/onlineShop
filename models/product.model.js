@@ -15,7 +15,7 @@ const Product = mongoose.model('product', productSchema);
 exports.getAllProducts = (category) => {
     return new Promise((resolve, reject) => {
         mongoose.connect(DB_URL, { useNewUrlParser: true }).then(() => {
-            if(category !== 'all' && category) {
+            if (category !== 'all' && category) {
                 return Product.find({
                     category: category
                 })
@@ -23,10 +23,21 @@ exports.getAllProducts = (category) => {
             else {
                 return Product.find()
             }
-            
+
         }).then((products) => {
             mongoose.disconnect();
             resolve(products)
         }).catch(err => reject(err));
+    });
+}
+
+exports.getProduct = (productId) => {
+    return new Promise((resolve, reject) => {
+        mongoose.connect(DB_URL, { useNewUrlParser: true }).then(() => {
+            return Product.findById(productId)
+        }).then((product) => {
+            mongoose.disconnect();
+            resolve(product);
+        }).catch((err) => reject(err));
     });
 }

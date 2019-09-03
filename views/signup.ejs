@@ -1,0 +1,45 @@
+<!-- include head  -->
+<%- include('incs/header.ejs') %>
+
+<!-- include navbar  -->
+<%- include('incs/navbar.ejs') %>
+<!-- Write content of page  -->
+
+<section class="signup text-center m-auto" style="max-width: 500px;">
+        <div class="container">
+                <img src="ouch-eastwood-sign-in.png" alt="login">
+            </div>
+    <div class="container mt-2">
+        
+        <form action="/register" method="POST">
+            <div class="form-group mb-4">
+                <input type="text" name="username" placeholder="Username" required class="form-control">
+            </div>
+            <div class="form-group mb-4">
+                <input type="email" name="email" placeholder="E-Mail" required class="form-control">
+            </div>
+            <div class="form-group mb-4">
+                <input type="password" name="password" placeholder="Password" required class="form-control">
+            </div>
+            <div class="form-group mb-4">
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" required
+                    class="form-control">
+            </div>
+            <div class="form-group mb-4">
+                    <input type="submit" value="Create Account"
+                        class="btn btn-primary" >
+                </div>
+        </form>
+        <div class="d-flex justify-content-center">
+            <p>Already Have Account ?  </p>
+            <p class="ml-1"><a href="/login"> Login</a></p>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- end content of page  -->
+<!-- include footer  -->
+<%- include('incs/footer.ejs') %>

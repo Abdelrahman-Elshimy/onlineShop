@@ -1,6 +1,5 @@
 const productModel = require('../models/product.model');
 exports.getHome = (req, res, next) => {
-
     let category = req.query.category;
     let validCategories = ['clothes', 'phones', 'computers'];
 
