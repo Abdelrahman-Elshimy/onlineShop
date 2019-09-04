@@ -22,6 +22,9 @@
                 <input type="submit" value="Login" class="btn btn-primary">
             </div>
         </form>
+        <% if (authErr) { %>
+            <p class="alert alert-danger"><%= authErr %></p>
+        <% } %>
         <div class="d-flex justify-content-center">
             <p>Don't Have an Account ? </p>
             <p class="ml-1"><a href="/signup"> Register</a></p>

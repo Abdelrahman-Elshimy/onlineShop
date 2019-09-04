@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+// sessions
+const flash = require('connect-flash');
 const session = require('express-session');
 const SessionStore = require('connect-mongodb-session')(session);
 
@@ -15,6 +17,9 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'images')));
 
+// view engine
+app.set('view engine', 'ejs');
+
 // store session
 const Store = new SessionStore({
     uri: 'mongodb://localhost:27017/shop',
@@ -25,12 +30,11 @@ const Store = new SessionStore({
 app.use(session({
     secret: 'make myu secret secret is my secret',
     saveUninitialized: false,
-    store: Store
+    store: Store,
+    resave: true
 }))
 
-// view engine
-app.set('view engine', 'ejs');
-
+app.use(flash());
 
 // middlwares
 app.use(homeRoutes);
