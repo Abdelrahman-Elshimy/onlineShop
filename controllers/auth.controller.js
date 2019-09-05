@@ -3,19 +3,26 @@ const validatorResult = require('express-validator').validationResult;
 
 
 exports.goToSignup = (req, res, next) => {
-    res.render('signup');
+    res.render('signup', {
+        pagetTitle: 'Register',
+        isLogin: req.session.userId
+    });
 }
 exports.register = (req, res, next) => {
 
     if (validatorResult(req).array().length > 0) {
-        console.log(validatorResult(req).array());
         res.render('signup', {
            valids:  validatorResult(req).array(),
+           pagetTitle: 'Register',
+           isLogin: req.session.userId
         });
     }
     else {
         userModel.register(req).then((user) => {
-            res.redirect('/login');
+            res.redirect('/login', {
+                pagetTitle: 'Login',
+                isLogin: req.session.userId
+            });
         }).catch((err) => {
             let arr  = [];
             arr.push({
@@ -24,6 +31,8 @@ exports.register = (req, res, next) => {
 
             res.render('signup', {
                 valids:  arr,
+                pagetTitle: 'Register',
+                isLogin: req.session.userId
              });
         })
     }
@@ -33,7 +42,9 @@ exports.register = (req, res, next) => {
 exports.goToLogin = (req, res, next) => {
 
     res.render('login', {
-        authErr: req.flash('authErr')[0]
+        authErr: req.flash('authErr')[0],
+        pagetTitle: 'Login',
+        isLogin: req.session.userId
     });
 }
 

@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const bodyParser = require('body-parser');
 const check = require('express-validator').check;
-
+const authGuard = require('./guards/auth.guard');
 const bodyParserM = bodyParser.urlencoded({
     extended: true,
 });
 const authController = require('../controllers/auth.controller');
-router.get('/signup', authController.goToSignup);
+router.get('/signup', authGuard.isNotAuth, authController.goToSignup);
 router.post('/signup', 
 bodyParserM, 
 check('username').not().isEmpty().withMessage('username is required'),
@@ -17,7 +17,7 @@ check('confirmPassword').custom((value, {req}) => {
     else throw 'Passwords no equal';
 }).withMessage('Passwords not equal'),
 authController.register);
-router.get('/login', authController.goToLogin);
+router.get('/login', authGuard.isNotAuth, authController.goToLogin);
 router.post('/login',bodyParserM, authController.login);
 router.get('/logout', authController.logout);
 

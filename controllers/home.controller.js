@@ -6,14 +6,18 @@ exports.getHome = (req, res, next) => {
     if(validCategories.includes(category) && category) {
         productModel.getAllProducts(category).then(products => {
             res.render('index', {
-                products: products
+                products: products,
+                pagetTitle: 'Home',
+                isLogin: req.session.userId
             });
         });
     }
     else {
         productModel.getAllProducts().then(products => {
             res.render('index', {
-                products: products
+                products: products,
+                pagetTitle: 'Home',
+                isLogin: req.session.userId
             });
         });
     }
