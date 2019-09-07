@@ -24,7 +24,7 @@ app.set('view engine', 'ejs');
 
 // store session
 const Store = new SessionStore({
-    uri: 'mongodb://localhost:27017/shop',
+    uri: 'mongodb+srv://Abdelrahman:EHaQS00IQAjp6soT@cluster0-pagsq.mongodb.net/shop?retryWrites=true&w=majority',
     collection: 'sessions'
 });
 
@@ -52,8 +52,10 @@ app.use((req, res, next) => {
     });
 });
 
+const port = process.env.PORT || 3000;
+
 
 // listen
-app.listen(3000, (err) => {
-    console.log('server listen to port 3000');
+app.listen(port, (err) => {
+    console.log('server listen to port ' + 3000);
 });

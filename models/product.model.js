@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const DB_URL = 'mongodb://localhost:27017/shop';
+const DB_URL = 'mongodb+srv://Abdelrahman:EHaQS00IQAjp6soT@cluster0-pagsq.mongodb.net/shop?retryWrites=true&w=majority';
 
 const productSchema = mongoose.Schema({
     name: String,
