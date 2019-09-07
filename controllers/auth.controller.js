@@ -19,10 +19,7 @@ exports.register = (req, res, next) => {
     }
     else {
         userModel.register(req).then((user) => {
-            res.redirect('/login', {
-                pagetTitle: 'Login',
-                isLogin: req.session.userId
-            });
+            res.redirect('/login');
         }).catch((err) => {
             let arr  = [];
             arr.push({
@@ -49,8 +46,9 @@ exports.goToLogin = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-    userModel.loging(req).then((id) => {
-        req.session.userId = id;
+    userModel.loging(req).then((result) => {
+        req.session.userId = result.id;
+        req.session.isAdmin = result.isAdmin;
         res.redirect('/');
     }).catch((err) => {
         req.flash('authErr', err);

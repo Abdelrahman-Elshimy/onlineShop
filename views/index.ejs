@@ -36,6 +36,9 @@
                         <p class="card-text"><%= products[i].description %></p>
                         <form action="/cart" method="POST">
                             <input type="number" name="amount" placeholder="Entre amount" class="form-control">
+                            <input type="hidden" name="name" value="<%= products[i].name %>">
+                            <input type="hidden" name="price" value="<%= products[i].price %>">
+                            <input type="hidden" name="productId" value="<%= products[i]._id %>">
                             <hr>
                             <input type="submit" value="Add to cart" class="btn btn-primary form-control">
                         </form>

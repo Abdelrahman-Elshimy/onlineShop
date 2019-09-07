@@ -9,7 +9,6 @@ exports.getProduct = (req, res, next) => {
             isLogin: req.session.userId
         });
     }).catch((err) => { 
-        console.log(err);
         res.render('product', {
             product: 'not',
             pagetTitle: 'Product',

@@ -1,0 +1,48 @@
+<!-- include head  -->
+<%- include('incs/header.ejs') %>
+
+<!-- include navbar  -->
+<%- include('incs/navbar.ejs') %>
+<!-- Write content of page  -->
+
+<div class="container">
+    <div class="row">
+        <% if (items.length > 0) { %>
+
+        <table class="table table-dark mt-5">
+            <thead>
+                <td>no</td>
+                <td>name</td>
+                <td>price</td>
+                <td>amount</td>
+                <td>total</td>
+            </thead>
+            <tbody>
+                <% for( let i =0; i < items.length; i++) { %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= items[i].name %></td>
+                        <td><%= items[i].price %></td>
+                            <td><%= items[i].amount %>
+                            <td><%= items[i].price * items[i].amount %></td>
+                            
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+
+        <% } else {%>
+        <div class="container text-center empty mr-auto">
+            <h1 class="alert alert-danger">No items yet</h1>
+        </div>
+        <% } %>
+
+
+
+    </div>
+</div>
+
+<!-- end content of page  -->
+<!-- include footer  -->
+<%- include('incs/footer.ejs') %>

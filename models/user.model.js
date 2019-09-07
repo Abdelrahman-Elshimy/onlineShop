@@ -5,7 +5,11 @@ const DB_URL = 'mongodb://localhost:27017/shop';
 const userSchema = mongoose.Schema({
     username: String,
     email: String,
-    password: String
+    password: String,
+    isAdmin: {
+        type: Boolean,
+        default: false
+    }
 });
 
 const userModel = mongoose.model('user', userSchema);
@@ -50,7 +54,10 @@ exports.loging = (req) => {
                         mongoose.disconnect();
                     }
                     else {
-                        resolve(user._id);
+                        resolve({
+                            id: user._id,
+                            isAdmin: user.isAdmin
+                        });
                         mongoose.disconnect();
                     }
                 }).catch((err) => {

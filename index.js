@@ -10,6 +10,8 @@ const SessionStore = require('connect-mongodb-session')(session);
 const homeRoutes = require('./routes/home.routes');
 const productRoutes = require('./routes/product.routes');
 const signupRoutes = require('./routes/auth.routes');
+const cartRoutes = require('./routes/cart.routes');
+const adminRoutes = require('./routes/admin.routes');
 
 const app = express();
 
@@ -40,6 +42,16 @@ app.use(flash());
 app.use(homeRoutes);
 app.use('/product', productRoutes);
 app.use(signupRoutes);
+app.use(cartRoutes);
+app.use('/admin', adminRoutes);
+
+app.use((req, res, next) => {
+    res.status(404);
+    res.render('404', {
+        pagetTitle: '404'
+    });
+});
+
 
 // listen
 app.listen(3000, (err) => {
